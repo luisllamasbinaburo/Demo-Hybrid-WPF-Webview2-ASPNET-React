@@ -13,37 +13,7 @@ namespace HybridAppWPF
         {
             try
             {
-                var builder = WebApplication.CreateBuilder();
-
-                builder.Services.AddControllers();
-                builder.Services.AddCors(options =>
-                {
-                    options.AddPolicy(
-                        "AllowAll",
-                        policy =>
-                        {
-                            policy
-#if DEBUG
-                            .WithOrigins("http://localhost:5173")
-#endif
-                            .AllowAnyMethod().AllowAnyHeader();
-                        }
-                    );
-                });
-
-                _app = builder.Build();
-
-                _app.UseCors("AllowAll");
-
-                _app.MapControllers();
-
-                _app.UseDefaultFiles(); // <-- Sirve index.html por defecto
-                _app.UseStaticFiles();  // <-- Sirve archivos de wwwroot
-                _app.MapFallbackToFile("index.html"); // <-- Para rutas de React
-
-                _app.MapGet("/api/demo", () => new { message = "¡Funciona! 🎉" });
-
-                _app.RunAsync(); // Iniciar en segundo plano
+                WebApplication1.Program.Main(new string[] { "run_async" });
             }
             catch (Exception ex)
             {
