@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace HybridAppWPF;
+namespace AppWPF;
 
 /// <summary>
 /// Interaction logic for MainWindow.xaml

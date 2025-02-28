@@ -1,2 +1,2 @@
 # Publicar
-dotnet publish HybridAppWPF -c Release -o HybridAppWPF/publish
+dotnet publish AppWPF -c Release -o AppWPF/publish

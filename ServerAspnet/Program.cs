@@ -1,5 +1,5 @@
 ﻿
-namespace WebApplication1
+namespace ServerAspnet
 {
     public class Program
     {

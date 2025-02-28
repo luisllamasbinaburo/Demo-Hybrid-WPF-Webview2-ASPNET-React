@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace HybridAppWPF;
+namespace ServerAspnet.Controllers;
 
 [ApiController]
 [Route("[controller]")]
@@ -11,9 +11,11 @@ public class WeatherForecastController : ControllerBase
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
     };
 
-      public WeatherForecastController()
+    private readonly ILogger<WeatherForecastController> _logger;
+
+    public WeatherForecastController(ILogger<WeatherForecastController> logger)
     {
-      
+        _logger = logger;
     }
 
     [HttpGet(Name = "GetWeatherForecast")]

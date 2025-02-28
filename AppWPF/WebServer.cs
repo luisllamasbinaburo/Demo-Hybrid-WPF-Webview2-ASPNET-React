@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using System.Windows;
 
-namespace HybridAppWPF
+namespace AppWPF
 {
     public class WebServer
     {
@@ -13,7 +13,7 @@ namespace HybridAppWPF
         {
             try
             {
-                WebApplication1.Program.Main(new string[] { "run_async" });
+                ServerAspnet.Program.Main(new string[] { "run_async" });
             }
             catch (Exception ex)
             {

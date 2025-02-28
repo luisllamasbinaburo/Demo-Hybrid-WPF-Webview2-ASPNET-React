@@ -17,15 +17,15 @@
   </ItemGroup>  
 
   <ItemGroup>
-    <ProjectReference Include="..\WebApplication1\WebApplication1.csproj" />
+    <ProjectReference Include="..\ServerAspnet\ServerAspnet.csproj" />
   </ItemGroup>
 
  <Target Name="BuildReactApp" BeforeTargets="BeforeBuild" Condition="'$(Configuration)' == 'Release'">
     <Message Importance="high" Text="Construyendo React App..." />
-    <Exec Command="npm install" WorkingDirectory="../HybridClientReact" />
-    <Exec Command="npm run build" WorkingDirectory="../HybridClientReact" />
+    <Exec Command="npm install" WorkingDirectory="../ClientReact" />
+    <Exec Command="npm run build" WorkingDirectory="../ClientReact" />
     <ItemGroup>
-      <ReactBuildFiles Include="../HybridClientReact/dist/**" />
+      <ReactBuildFiles Include="../ClientReact/dist/**" />
     </ItemGroup>
     <Copy SourceFiles="@(ReactBuildFiles)" DestinationFiles="@(ReactBuildFiles->'wwwroot\%(RecursiveDir)%(Filename)%(Extension)')" />
 

@@ -1,4 +1,4 @@
-namespace HybridAppWPF
+namespace AppWPF
 {
     public class WeatherForecast
     {

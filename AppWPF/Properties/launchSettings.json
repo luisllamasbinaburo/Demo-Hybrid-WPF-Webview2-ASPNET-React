@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "HybridAppWPF": {
+    "AppWPF": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
