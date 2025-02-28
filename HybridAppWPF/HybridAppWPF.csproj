@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>  
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3065.39" />
+  </ItemGroup>
+
+ <Target Name="BuildReactApp" BeforeTargets="BeforeBuild" Condition="'$(Configuration)' == 'Release'">
+    <Message Importance="high" Text="Construyendo React App..." />
+    <Exec Command="npm install" WorkingDirectory="../HybridClientUI" />
+    <Exec Command="npm run build" WorkingDirectory="../HybridClientUI" />
+    <ItemGroup>
+      <ReactBuildFiles Include="../HybridClientUI/dist/**" />
+    </ItemGroup>
+    <Copy SourceFiles="@(ReactBuildFiles)" DestinationFiles="@(ReactBuildFiles->'wwwroot\%(RecursiveDir)%(Filename)%(Extension)')" />
+
+    <ItemGroup>
+     <Content Include="wwwroot\**">
+       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+     </Content>
+   </ItemGroup>
+  </Target>
+</Project>

@@ -1,0 +1,1 @@
+dotnet publish HybridAppWPF -c Release -o HybridAppWPF/publish -r win-x64 --self-contained true
