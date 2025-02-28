@@ -1,4 +1,6 @@
 ﻿
+using Microsoft.AspNetCore.Mvc.ApplicationParts;
+
 namespace ServerAspnet
 {
     public class Program
@@ -7,7 +9,6 @@ namespace ServerAspnet
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            builder.Services.AddControllers();
             builder.Services.AddCors(options =>
             {
                 options.AddPolicy(
@@ -23,8 +24,7 @@ namespace ServerAspnet
                 );
             });
 
-        
-            builder.Services.AddControllers();
+            builder.Services.AddControllers().PartManager.ApplicationParts.Add(new AssemblyPart(typeof(Program).Assembly));
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 

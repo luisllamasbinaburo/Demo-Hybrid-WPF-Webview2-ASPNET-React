@@ -2,12 +2,13 @@ import { useEffect, useState } from 'react'
    
 function App() {
   const [data, setData] = useState(null)
-
   const [forecasts, setForecasts] = useState();
+  const [files, setFiles] = useState();
 
-  const contents = forecasts === undefined
+  const contents = forecasts === undefined && files === undefined
   ? <p><em>Loading... Please refresh once the ASP.NET backend has started. See <a href="https://aka.ms/jspsintegrationreact">https://aka.ms/jspsintegrationreact</a> for more details.</em></p>
-  : <table>
+  : <>
+    <table>
       <thead>
           <tr>
               <th>Date</th>
@@ -26,7 +27,12 @@ function App() {
               </tr>
           )}
       </tbody>
-  </table>;
+  </table>
+  <ul>
+    {files.map(file => <li key={file}>{file}</li>)}
+  </ul> 
+ </>
+  ;
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/api/demo`)
@@ -36,6 +42,10 @@ function App() {
 
   useEffect(() => {
     populateWeatherData();
+}, []);
+
+useEffect(() => {
+    getFiles();
 }, []);
 
   return <>
@@ -55,6 +65,14 @@ async function populateWeatherData() {
       setForecasts(data);
   }
 }
+
+async function getFiles() {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/files`);
+    if (response.ok) {
+        const data = await response.json();
+        setFiles(data);
+    }
+  }
 }
 
 
