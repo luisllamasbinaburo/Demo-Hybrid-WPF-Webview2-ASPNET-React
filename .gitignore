@@ -5,6 +5,8 @@ dist/
 .astro/
 .obsidian/
 
+wwwroot/
+
 # dependencies
 node_modules/
 

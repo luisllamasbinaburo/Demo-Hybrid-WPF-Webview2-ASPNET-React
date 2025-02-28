@@ -22,15 +22,16 @@ namespace HybridAppWPF
                         policy =>
                         {
                             policy
-#if DEBUG
                             .WithOrigins("http://localhost:5173")
-#endif
+                             .WithOrigins("http://localhost:5000")
                             .AllowAnyMethod().AllowAnyHeader();
                         }
                     );
                 });
 
                 _app = builder.Build();
+
+                _app.UseCors("AllowAll");
 
                 _app.UseDefaultFiles(); // <-- Sirve index.html por defecto
                 _app.UseStaticFiles();  // <-- Sirve archivos de wwwroot
