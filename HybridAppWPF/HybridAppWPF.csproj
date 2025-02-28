@@ -18,10 +18,10 @@
 
  <Target Name="BuildReactApp" BeforeTargets="BeforeBuild" Condition="'$(Configuration)' == 'Release'">
     <Message Importance="high" Text="Construyendo React App..." />
-    <Exec Command="npm install" WorkingDirectory="../HybridClientUI" />
-    <Exec Command="npm run build" WorkingDirectory="../HybridClientUI" />
+    <Exec Command="npm install" WorkingDirectory="../HybridClientReact" />
+    <Exec Command="npm run build" WorkingDirectory="../HybridClientReact" />
     <ItemGroup>
-      <ReactBuildFiles Include="../HybridClientUI/dist/**" />
+      <ReactBuildFiles Include="../HybridClientReact/dist/**" />
     </ItemGroup>
     <Copy SourceFiles="@(ReactBuildFiles)" DestinationFiles="@(ReactBuildFiles->'wwwroot\%(RecursiveDir)%(Filename)%(Extension)')" />
 
