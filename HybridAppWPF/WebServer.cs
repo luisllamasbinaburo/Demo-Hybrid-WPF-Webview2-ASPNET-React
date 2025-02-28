@@ -15,6 +15,7 @@ namespace HybridAppWPF
             {
                 var builder = WebApplication.CreateBuilder();
 
+                builder.Services.AddControllers();
                 builder.Services.AddCors(options =>
                 {
                     options.AddPolicy(
@@ -22,8 +23,9 @@ namespace HybridAppWPF
                         policy =>
                         {
                             policy
+#if DEBUG
                             .WithOrigins("http://localhost:5173")
-                             .WithOrigins("http://localhost:5000")
+#endif
                             .AllowAnyMethod().AllowAnyHeader();
                         }
                     );
@@ -32,6 +34,8 @@ namespace HybridAppWPF
                 _app = builder.Build();
 
                 _app.UseCors("AllowAll");
+
+                _app.MapControllers();
 
                 _app.UseDefaultFiles(); // <-- Sirve index.html por defecto
                 _app.UseStaticFiles();  // <-- Sirve archivos de wwwroot

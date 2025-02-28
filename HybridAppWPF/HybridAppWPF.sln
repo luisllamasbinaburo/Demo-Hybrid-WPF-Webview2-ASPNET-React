@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35825.156 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HybridAppWPF", "HybridAppWPF.csproj", "{BC4967B3-DF32-A5D4-87C9-FE9626EC5C5C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BC4967B3-DF32-A5D4-87C9-FE9626EC5C5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC4967B3-DF32-A5D4-87C9-FE9626EC5C5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC4967B3-DF32-A5D4-87C9-FE9626EC5C5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC4967B3-DF32-A5D4-87C9-FE9626EC5C5C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {92581003-65D4-4A44-8E1C-706DF20D0092}
+	EndGlobalSection
+EndGlobal
