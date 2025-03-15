@@ -18,13 +18,14 @@ public partial class MainWindow : Window
 
     private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
     {
-        _server.Start();
+        Console.WriteLine("Iniciando servidor web...");
+        var port = _server.Start();
         await webView.EnsureCoreWebView2Async();
 
 #if DEBUG
-        webView.CoreWebView2.Navigate("http://localhost:5173"); // React dev server
+        webView.CoreWebView2.Navigate("http://localhost:5173");
 #else
-        webView.CoreWebView2.Navigate("http://localhost:5000");
+        webView.CoreWebView2.Navigate($"http://localhost:{port}");
 #endif
     }
 }

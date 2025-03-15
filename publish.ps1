@@ -1,2 +1,14 @@
 # Publicar
-dotnet publish AppWPF -c Release -o AppWPF/publish
+$wwwrootPath = ".\ServerAspnet\wwwroot"
+
+if (Test-Path $wwwrootPath) {
+    Remove-Item -Path $wwwrootPath -Recurse -Force
+}
+
+$publishPath = ".\publish"
+
+if (Test-Path $publishPath) {
+    Remove-Item -Path $publishPath -Recurse -Force
+}
+
+dotnet publish AppWPF -c Release -o publish

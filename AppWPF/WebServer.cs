@@ -9,18 +9,24 @@ namespace AppWPF
     {
         private WebApplication? _app;
 
-        public void Start()
+        public int Start()
         {
             try
             {
+                Console.WriteLine("Iniciando servidor web...");
                 ServerAspnet.Program.Main(new string[] { "run_async" });
+
+                var port = ServerAspnet.Program.port;
+                Console.WriteLine($"Iniciado en {port}");
+                return port;
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error en el servidor: {ex.Message}");
+                return 0;
             }
         }
-        
+
         public void Stop() => _app?.StopAsync();
     }
 }
