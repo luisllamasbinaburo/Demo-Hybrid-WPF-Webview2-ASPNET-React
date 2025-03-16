@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc.ApplicationParts;
-using System.Net;
+﻿using System.Net;
 using System.Net.NetworkInformation;
+using Microsoft.AspNetCore.Mvc.ApplicationParts;
 
 namespace ServerAspnet
 {
@@ -23,7 +23,8 @@ namespace ServerAspnet
                             .WithOrigins("http://localhost:5173")
 #endif
                             .AllowAnyMethod()
-                            .AllowAnyHeader();
+                            .AllowAnyHeader()
+                            .AllowCredentials();
                     }
                 );
             });
@@ -31,16 +32,23 @@ namespace ServerAspnet
             builder
                 .Services.AddControllers()
                 .PartManager.ApplicationParts.Add(new AssemblyPart(typeof(Program).Assembly));
+
+            builder.Services.AddSignalR();
+
+#if DEBUG
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+#endif
 
             var app = builder.Build();
 
+#if DEBUG
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+#endif
 
 #if !DEBUG
             // puerto dinámico (lo vemos en el siguiente punto)
@@ -59,6 +67,7 @@ namespace ServerAspnet
             app.UseStaticFiles(); // <-- Sirve archivos de wwwroot
 
             app.MapGet("/api/demo", () => new { message = "¡Funciona! 🎉" });
+            app.MapHub<ClockHub>("/clockHub");
 
             if (args.Any(x => x == "run_async"))
                 app.RunAsync();
